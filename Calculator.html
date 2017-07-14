@@ -1,0 +1,69 @@
+<html ng-app="calcApp">
+
+<head>
+    <title>Calculator App</title>
+    <script src="angular.js"></script>
+    <script>
+        var app = angular.module("calcApp", []);
+        app.controller("CalCtrl", CalCtrl);
+
+        function CalCtrl($scope) {
+            var operator = "";
+            var computedValue = "";
+            $scope.showPlus = function () {
+                $scope.operator = "+";
+            }
+            $scope.showMinus = function () {
+                $scope.operator = "-";
+            }
+            $scope.showProduct = function () {
+                $scope.operator = "*";
+            }
+             $scope.showDivide = function () {
+                $scope.operator = "/";
+            }
+
+            $scope.compute = function () {
+                if($scope.operator == "+")
+                {
+                    $scope.computedValue = parseInt($scope.text1) + parseInt($scope.text2);
+                }
+                if($scope.operator == "-")
+                {
+                    $scope.computedValue = $scope.text1 - $scope.text2;
+                }
+                if($scope.operator == "*")
+                {
+                    $scope.computedValue = $scope.text1 * $scope.text2;
+                }
+                if($scope.operator == "/")
+                {
+                    $scope.computedValue = $scope.text1 / $scope.text2;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1> Calculator Application </h1>
+
+    <div ng-controller="CalCtrl">
+        <input ng-model="text1" type="text" />
+        <span>{{operator}}</span>
+        <input ng-model="text2" type="text" />
+        <button ng-click="compute()">=</button>
+        <span>{{computedValue}}</span>
+
+        <div>
+            <p>Choose Operation :
+                <button ng-click="showPlus()" value="+">+</button>
+                <button ng-click="showMinus()" value="-">-</button>
+                <button ng-click="showProduct()" value="*">*</button>
+                <button ng-click="showDivide()" value="/">/</button>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
